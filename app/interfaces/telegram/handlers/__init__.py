@@ -11,7 +11,7 @@ from .profile import (
     refund_router,
     history_router,
     notifications_router,
-    language_router
+    language_router,
 )
 
 

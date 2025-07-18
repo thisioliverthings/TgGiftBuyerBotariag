@@ -48,8 +48,7 @@ async def set_language_callback(call: CallbackQuery):
             user = await repo.create(
                 call.from_user.id, call.from_user.username or "user", language=lang
             )
-        onboarding_text = MESSAGES[lang]["onboarding"](
-            user.username, user.balance)
+        onboarding_text = MESSAGES[lang]["onboarding"](user.username, user.balance)
 
         # Если это выбор языка при старте, удаляем сообщение и отправляем новое
         if call.message.text == "Выберите язык / Choose language:":
@@ -62,6 +61,8 @@ async def set_language_callback(call: CallbackQuery):
             )
         else:
             # Если это смена языка из меню, редактируем текущее сообщение
-            await call.message.edit_text(onboarding_text, reply_markup=language_keyboard())
+            await call.message.edit_text(
+                onboarding_text, reply_markup=language_keyboard()
+            )
 
         await call.answer()

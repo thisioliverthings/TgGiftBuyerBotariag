@@ -67,7 +67,9 @@ class TelegramGiftsApi:
             return False
 
     @logger.catch
-    async def refund_payment(self, telegram_payment_charge_id: str, user_id: int) -> bool:
+    async def refund_payment(
+        self, telegram_payment_charge_id: str, user_id: int
+    ) -> bool:
         url = f"{self._base_url}/refundStarPayment"
         payload = {
             "telegram_payment_charge_id": telegram_payment_charge_id,

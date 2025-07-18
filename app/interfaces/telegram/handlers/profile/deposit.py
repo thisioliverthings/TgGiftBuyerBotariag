@@ -55,8 +55,7 @@ async def process_deposit_input(message: Message, state: FSMContext) -> None:
             raise ValueError("Amount must be positive.")
     except ValueError:
         await message.answer(
-            text=MESSAGES[lang]["deposit_error"], reply_markup=back_keyboard(
-                lang=lang)
+            text=MESSAGES[lang]["deposit_error"], reply_markup=back_keyboard(lang=lang)
         )
         return
     payload = f"deposit_{amount}_to_{message.from_user.id}"
@@ -64,8 +63,7 @@ async def process_deposit_input(message: Message, state: FSMContext) -> None:
         f"Создаю депозит на {amount} звёзд от пользователя: {message.from_user.id}"
     )
     prices = [
-        LabeledPrice(label=MESSAGES[lang]
-                     ["deposit_invoice_title"], amount=amount)
+        LabeledPrice(label=MESSAGES[lang]["deposit_invoice_title"], amount=amount)
     ]
     await message.answer_invoice(
         title=MESSAGES[lang]["deposit_invoice_title"],

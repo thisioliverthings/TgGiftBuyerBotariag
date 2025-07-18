@@ -21,8 +21,7 @@ from app.interfaces.telegram.middlewares.back_button_middleware import (
 )
 
 bot = Bot(
-    token=settings.bot_token, default=DefaultBotProperties(
-        parse_mode=ParseMode.HTML)
+    token=settings.bot_token, default=DefaultBotProperties(parse_mode=ParseMode.HTML)
 )
 dp = Dispatcher(storage=MemoryStorage())
 

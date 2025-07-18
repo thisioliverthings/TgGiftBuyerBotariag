@@ -36,8 +36,7 @@ async def buy_gift_command(message: types.Message, state: FSMContext):
 
     if not gifts:
         await message.answer(
-            MESSAGES[lang]["history_empty"], reply_markup=main_menu_keyboard(
-                lang=lang)
+            MESSAGES[lang]["history_empty"], reply_markup=main_menu_keyboard(lang=lang)
         )
         return
 
@@ -130,8 +129,7 @@ async def process_gift_id_input(message: types.Message, state: FSMContext):
 
             elif err == "debit_failed":
                 await message.reply(
-                    ERRORS[lang]["debit_failed"], reply_markup=back_keyboard(
-                        lang=lang)
+                    ERRORS[lang]["debit_failed"], reply_markup=back_keyboard(lang=lang)
                 )
 
             elif err == "gift_send_failed":
@@ -148,8 +146,7 @@ async def process_gift_id_input(message: types.Message, state: FSMContext):
 
             else:
                 await message.reply(
-                    ERRORS[lang]["unknown"], reply_markup=back_keyboard(
-                        lang=lang)
+                    ERRORS[lang]["unknown"], reply_markup=back_keyboard(lang=lang)
                 )
             return
 

@@ -157,11 +157,10 @@ class TransactionRepository(ITransactionRepository):
             for tx in transactions
         ]
 
-    async def get_user_transactions_count(
-        self, user_id: int
-    ) -> int:
+    async def get_user_transactions_count(self, user_id: int) -> int:
         result = await self.session.scalar(
-            select(func.count(TransactionModel.id))
-            .where(TransactionModel.user_id == user_id)
+            select(func.count(TransactionModel.id)).where(
+                TransactionModel.user_id == user_id
+            )
         )
         return result if result else 0

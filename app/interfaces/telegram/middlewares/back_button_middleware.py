@@ -6,7 +6,10 @@ from app.core.logger import logger
 from app.interfaces.telegram.messages import BUTTONS, MESSAGES
 from app.infrastructure.db.repositories import UserRepository, AutoBuySettingReporistory
 from app.infrastructure.db.session import get_db
-from app.interfaces.telegram.keyboards.default import main_menu_keyboard, auto_buy_keyboard
+from app.interfaces.telegram.keyboards.default import (
+    main_menu_keyboard,
+    auto_buy_keyboard,
+)
 from app.interfaces.telegram.states.auto_buy_state import AutoBuyStates
 
 
@@ -14,7 +17,8 @@ class BackButtonMiddleware(BaseMiddleware):
     async def __call__(self, handler, event, data):
         if isinstance(event, Message):
             logger.info(
-                f"BackButtonMiddleware: Processing message with text: '{event.text}'")
+                f"BackButtonMiddleware: Processing message with text: '{event.text}'"
+            )
 
             if event.text in [BUTTONS["ru"]["back"], BUTTONS["en"]["back"]]:
                 logger.info(f"Back button detected: '{event.text}'")
@@ -31,7 +35,8 @@ class BackButtonMiddleware(BaseMiddleware):
                     prev_state = data_state.get("prev_state")
 
                     logger.info(
-                        f"Current state: {current_state}, prev_state: {prev_state}")
+                        f"Current state: {current_state}, prev_state: {prev_state}"
+                    )
 
                     if not current_state:
                         logger.info("No current state, returning to main menu")
@@ -39,7 +44,9 @@ class BackButtonMiddleware(BaseMiddleware):
                         await self._return_to_main_menu(event)
                         return
                     elif current_state and current_state.startswith("AutoBuyStates"):
-                        await self._handle_auto_buy_back(event, state, current_state, prev_state)
+                        await self._handle_auto_buy_back(
+                            event, state, current_state, prev_state
+                        )
                         return
                     elif current_state and current_state.startswith("GiftStates"):
                         await state.clear()

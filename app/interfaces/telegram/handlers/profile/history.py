@@ -79,8 +79,7 @@ async def send_history_page(message: Message, state: FSMContext, user_id: int = 
             await message.answer(
                 MESSAGES[lang]["history_empty"],
                 reply_markup=main_menu_keyboard(
-                    lang=lang,
-                    notifications_enabled=user.notifications_enabled
+                    lang=lang, notifications_enabled=user.notifications_enabled
                 ),
             )
             return
@@ -108,13 +107,11 @@ async def send_history_page(message: Message, state: FSMContext, user_id: int = 
 
             if status == "REFUNDED":
                 tx_time = (
-                    tx.updated_at.strftime(
-                        "%Y-%m-%d %H:%M:%S") if tx.updated_at else ""
+                    tx.updated_at.strftime("%Y-%m-%d %H:%M:%S") if tx.updated_at else ""
                 )
             else:
                 tx_time = (
-                    tx.created_at.strftime(
-                        "%Y-%m-%d %H:%M:%S") if tx.created_at else ""
+                    tx.created_at.strftime("%Y-%m-%d %H:%M:%S") if tx.created_at else ""
                 )
 
             line = f"{tx_time} | " + MESSAGES[lang]["history_line"](
@@ -126,7 +123,8 @@ async def send_history_page(message: Message, state: FSMContext, user_id: int = 
         header = f"🕓 История\nВремя: {now}\nСтраница: {page+1}/{total_pages}\n"
 
         inline_markup = history_pagination_keyboard(
-            has_prev, has_next, page, total_pages, lang)
+            has_prev, has_next, page, total_pages, lang
+        )
 
         try:
             await message.edit_text(

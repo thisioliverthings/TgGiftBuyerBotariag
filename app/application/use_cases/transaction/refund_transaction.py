@@ -10,7 +10,7 @@ class RefundTransaction:
         self,
         user_repo: IUserRepository,
         transaction_repo: ITransactionRepository,
-        gifts_service: IGiftsService
+        gifts_service: IGiftsService,
     ):
         self.user_repo = user_repo
         self.transaction_repo = transaction_repo
@@ -32,13 +32,11 @@ class RefundTransaction:
             telegram_payment_charge_id
         )
         if not transaction:
-            logger.error(
-                "[UseCase:RefundTransaction] Ошибка: transaction_not_found")
+            logger.error("[UseCase:RefundTransaction] Ошибка: transaction_not_found")
             return {"ok": False, "error": "transaction_not_found"}
 
         if transaction.status == TransactionStatus.REFUNDED:
-            logger.error(
-                "[UseCase:RefundTransaction] Ошибка: already_refunded")
+            logger.error("[UseCase:RefundTransaction] Ошибка: already_refunded")
             return {"ok": False, "error": "already_refunded"}
 
         user: UserDTO = await self.user_repo.get_user_by_id(transaction.user_id)
@@ -53,8 +51,7 @@ class RefundTransaction:
             telegram_payment_charge_id, user.telegram_id
         )
         if not telegram_refund_success:
-            logger.error(
-                "[UseCase:RefundTransaction] Ошибка: telegram_refund_failed")
+            logger.error("[UseCase:RefundTransaction] Ошибка: telegram_refund_failed")
             return {"ok": False, "error": "telegram_refund_failed"}
 
         user = await self.user_repo.debit_user_balance(user.telegram_id, refund_amount)
@@ -62,8 +59,7 @@ class RefundTransaction:
             logger.error("[UseCase:RefundTransaction] Ошибка: debit_failed")
             return {"ok": False, "error": "debit_failed"}
 
-        logger.info(
-            f"[UseCase:RefundTransaction] Баланс после: {user.balance}")
+        logger.info(f"[UseCase:RefundTransaction] Баланс после: {user.balance}")
 
         logger.info(
             f"[UseCase:RefundTransaction] Транзакция до: id={transaction.id}, status={transaction.status}"

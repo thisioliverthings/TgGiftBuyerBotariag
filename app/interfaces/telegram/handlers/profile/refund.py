@@ -27,8 +27,7 @@ async def command_refund_handler(message: Message) -> None:
         lang = user.language if user else "ru"
         if len(parts) != 2:
             await message.reply(
-                MESSAGES[lang]["input_error"], reply_markup=back_keyboard(
-                    lang=lang)
+                MESSAGES[lang]["input_error"], reply_markup=back_keyboard(lang=lang)
             )
             return
 
@@ -36,8 +35,7 @@ async def command_refund_handler(message: Message) -> None:
 
         async with aiohttp.ClientSession() as http_session:
             gifts_api = TelegramGiftsApi(http_session)
-            use_case = RefundTransaction(
-                user_repo, transaction_repo, gifts_api)
+            use_case = RefundTransaction(user_repo, transaction_repo, gifts_api)
             result = await use_case.execute(message.from_user.id, transaction_id)
 
         if not result["ok"]:

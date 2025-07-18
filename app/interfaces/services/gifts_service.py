@@ -14,4 +14,5 @@ class IGiftsService(ABC):
 
     @abstractmethod
     async def refund_payment(
-        self, telegram_payment_charge_id: str, user_id: int) -> bool: ...
+        self, telegram_payment_charge_id: str, user_id: int
+    ) -> bool: ...
