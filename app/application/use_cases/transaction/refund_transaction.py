@@ -2,14 +2,19 @@ from app.core.logger import logger
 from app.domain.entities import UserDTO
 from app.infrastructure.db.enums import TransactionStatus, UserRole
 from app.interfaces.repositories import ITransactionRepository, IUserRepository
+from app.interfaces.services.gifts_service import IGiftsService
 
 
 class RefundTransaction:
     def __init__(
-        self, user_repo: IUserRepository, transaction_repo: ITransactionRepository
+        self,
+        user_repo: IUserRepository,
+        transaction_repo: ITransactionRepository,
+        gifts_service: IGiftsService
     ):
         self.user_repo = user_repo
         self.transaction_repo = transaction_repo
+        self.gifts_service = gifts_service
 
     async def execute(
         self, admin_telegram_id: int, telegram_payment_charge_id: str
@@ -43,6 +48,14 @@ class RefundTransaction:
 
         logger.info(f"[UseCase:RefundTransaction] Баланс до: {user.balance}")
         refund_amount = transaction.amount
+
+        telegram_refund_success = await self.gifts_service.refund_payment(
+            telegram_payment_charge_id, user.telegram_id
+        )
+        if not telegram_refund_success:
+            logger.error(
+                "[UseCase:RefundTransaction] Ошибка: telegram_refund_failed")
+            return {"ok": False, "error": "telegram_refund_failed"}
 
         user = await self.user_repo.debit_user_balance(user.telegram_id, refund_amount)
         if not user:

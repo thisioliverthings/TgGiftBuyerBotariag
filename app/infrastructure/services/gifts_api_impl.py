@@ -65,3 +65,28 @@ class TelegramGiftsApi:
         except Exception as e:
             logger.error(f"[GiftsApi] Ошибка при отправке подарка: {e}")
             return False
+
+    @logger.catch
+    async def refund_payment(self, telegram_payment_charge_id: str, user_id: int) -> bool:
+        url = f"{self._base_url}/refundStarPayment"
+        payload = {
+            "telegram_payment_charge_id": telegram_payment_charge_id,
+            "user_id": user_id,
+        }
+
+        try:
+            async with self._session.post(url, json=payload) as resp:
+                data = await resp.json()
+                if data.get("ok"):
+                    logger.info(
+                        f"[GiftsApi] Платеж {telegram_payment_charge_id} успешно возвращен"
+                    )
+                    return True
+                else:
+                    logger.error(
+                        f"[GiftsApi] Ошибка возврата платежа: {data.get('description')}"
+                    )
+                    return False
+        except Exception as e:
+            logger.error(f"[GiftsApi] Ошибка при возврате платежа: {e}")
+            return False

@@ -115,6 +115,9 @@ app/
 git clone https://github.com/neverwasbored/Telegram-GiftBuyer-Bot.git
 cd Telegram-GiftBuyer-Bot
 
+# Быстрый старт!
+Запустите setup_and_run для вашей системы!
+
 # Создать виртуальное окружение (Windows)
 python -m venv venv
 venv\Scripts\activate

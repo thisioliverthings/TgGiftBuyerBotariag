@@ -232,6 +232,7 @@ ERRORS = {
         "refund_already": "Средства по этой транзакции уже были возвращены.",
         "refund_user_not_found": "Пользователь, связанный с транзакцией, не найден.",
         "refund_debit_failed": "Ошибка возврата средств пользователю.",
+        "refund_telegram_failed": "Ошибка возврата платежа через Telegram. Попробуйте позже.",
     },
     "en": {
         "user_not_found": "User not found.",
@@ -246,5 +247,6 @@ ERRORS = {
         "refund_already": "Funds for this transaction have already been refunded.",
         "refund_user_not_found": "User associated with the transaction not found.",
         "refund_debit_failed": "Failed to refund user.",
+        "refund_telegram_failed": "Failed to refund payment via Telegram. Try again later.",
     },
 }

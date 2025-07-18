@@ -1,3 +1,4 @@
+import aiohttp
 from aiogram import Router
 from aiogram.types import Message
 from aiogram.filters import Command
@@ -6,6 +7,7 @@ from app.application.use_cases import RefundTransaction
 from app.core.logger import logger
 from app.infrastructure.db.repositories import TransactionRepository, UserRepository
 from app.infrastructure.db.session import get_db
+from app.infrastructure.services import TelegramGiftsApi
 from app.interfaces.telegram.keyboards.default import back_keyboard, main_menu_keyboard
 from app.interfaces.telegram.messages import ERRORS, MESSAGES
 
@@ -25,13 +27,18 @@ async def command_refund_handler(message: Message) -> None:
         lang = user.language if user else "ru"
         if len(parts) != 2:
             await message.reply(
-                MESSAGES[lang]["input_error"], reply_markup=back_keyboard(lang=lang)
+                MESSAGES[lang]["input_error"], reply_markup=back_keyboard(
+                    lang=lang)
             )
             return
 
         transaction_id = parts[1]
-        use_case = RefundTransaction(user_repo, transaction_repo)
-        result = await use_case.execute(message.from_user.id, transaction_id)
+
+        async with aiohttp.ClientSession() as http_session:
+            gifts_api = TelegramGiftsApi(http_session)
+            use_case = RefundTransaction(
+                user_repo, transaction_repo, gifts_api)
+            result = await use_case.execute(message.from_user.id, transaction_id)
 
         if not result["ok"]:
             err = result["error"]
@@ -62,6 +69,12 @@ async def command_refund_handler(message: Message) -> None:
             elif err == "debit_failed":
                 await message.reply(
                     ERRORS[lang]["refund_debit_failed"],
+                    reply_markup=back_keyboard(lang=lang),
+                )
+
+            elif err == "telegram_refund_failed":
+                await message.reply(
+                    ERRORS[lang]["refund_telegram_failed"],
                     reply_markup=back_keyboard(lang=lang),
                 )
 
