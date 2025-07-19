@@ -112,6 +112,11 @@ app/
    | `DATABASE_URL`               | `sqlite+aiosqlite:///user_data.db`  |
    | `CHECK_GIFTS_DELAY_SECONDS`  | Интервал проверки (в секундах)      |
 
+## ПРИМЕР:
+BOT_TOKEN=**YOUR_TOKEN**
+DATABASE_URL=**sqlite+aiosqlite:///user_data.db**
+CHECK_GIFTS_DELAY_SECONDS=**3**
+
 ---
 
 ## ⬇️ Установка

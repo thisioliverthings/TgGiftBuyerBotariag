@@ -112,6 +112,11 @@ app/
 | `DATABASE_URL`                | `sqlite+aiosqlite:///user_data.db`            |
 | `CHECK_GIFTS_DELAY_SECONDS`   | Gift‑scan interval (seconds)                  |
 
+## EXAMPLE:
+BOT_TOKEN=**YOUR_TOKEN**
+DATABASE_URL=**sqlite+aiosqlite:///user_data.db**
+CHECK_GIFTS_DELAY_SECONDS=**3**
+
 ---
 
 ## ⬇️ Installation
