@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 if [ ! -d "venv" ]; then
-    python3 -m venv venv
+    python3.12 -m venv venv
 fi
 
 # активируем виртуальное окружение
