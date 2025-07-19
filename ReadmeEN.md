@@ -119,16 +119,16 @@ app/
 ```bash
 # If you are not familiar with Git:
 # 1. Download the ZIP archive:
-#    https://github.com/neverwasbored/Telegram-GiftBuyer-Bot/archive/refs/heads/main.zip
+#    https://github.com/neverwasbored/TgGiftBuyerBot/archive/refs/heads/main.zip
 # 2. Extract it:
 #    Windows: Right click → “Extract All…”
 #    Linux/macOS: unzip main.zip
 # 3. Move into the folder:
-#    cd Telegram-GiftBuyer-Bot-main
+#    cd TgGiftBuyerBot-main
 
 # Or clone the repository:
-git clone https://github.com/neverwasbored/Telegram-GiftBuyer-Bot.git
-cd Telegram-GiftBuyer-Bot
+git clone https://github.com/neverwasbored/TgGiftBuyerBot.git
+cd TgGiftBuyerBot
 
 # Quick Start!
 Run `setup_and_run` for your system!
