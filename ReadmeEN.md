@@ -19,6 +19,21 @@ Because Telegram keeps throttling the Bot API whenever new gifts are released, 
 
 ---
 
+## 💖 Support / Donations
+
+| **Network**            | **Token** | **Address / Tag**                                                                                    |
+|------------------------|-----------|-----------------------------------------------------------------------------------------------------|
+| 🟥 **TRON (TRC20)**     | USDT      | `TPoRfLVf4bYhZhcqLaY1UXneWD7FsP8n9U`                                                                 |
+| 🌐 **TON**             | ANY_TOKEN | `EQBVXzBT4lcTA3S7gxrg4hnl5fnsDKj4oNEzNp09aQxkwj1f`<br>**TAG**: `845065`                              |
+| 🪐 **Solana**          | USDT      | `6Y5Ke1iudDqSVFMD6iRw6rVNaG61oeiMhuNfpz4tXWb8`                                                        |
+| 🐬 **BSC (BEP20)**     | USDT      | `0xe2ea80596e8d2cca8353c0c54753b15f03d11a4b`                                                         |
+| 🏗️ **Polygon**         | USDT      | `0xe2ea80596e8d2cca8353c0c54753b15f03d11a4b`                                                         |
+| 🔥 **Ethereum (ERC20)** | USDT      | `0xe2ea80596e8d2cca8353c0c54753b15f03d11a4b`                                                         |
+
+🙏 **Thank you for your support!**
+
+---
+
 ## 📋 Table of Contents
 
 - [✨ Features](#-features)  
