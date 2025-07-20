@@ -121,6 +121,8 @@ CHECK_GIFTS_DELAY_SECONDS=**3**
 
 ## ⬇️ Installation
 
+**Youtube video, how to install repository to your pc RU: [Click](https://www.youtube.com/watch?v=30aBa2Z8fnA)**
+
 ```bash
 # If you are not familiar with Git:
 # 1. Download the ZIP archive:

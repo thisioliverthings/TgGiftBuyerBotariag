@@ -121,6 +121,8 @@ CHECK_GIFTS_DELAY_SECONDS=**3**
 
 ## ⬇️ Установка
 
+**Видео по установке репозитория: [Клик](https://www.youtube.com/watch?v=30aBa2Z8fnA)**
+
 ```bash
 # Если не знакомы с Git:
 # 1. Скачайте ZIP-архив:
