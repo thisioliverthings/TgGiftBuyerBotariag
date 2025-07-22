@@ -246,7 +246,7 @@ The language is detected automatically from your Telegram settings or via `/help
 To use the `/refund` command:
 
 1. Open the database (`user_data.db` in the project root).  
-2. In the `users` table change your account’s `status` from `user` to `admin`.  
+2. In the `users` table change your account’s `status` from `USER` to `ADMIN`.  
 3. Open the `transactions` table and copy the `telegram_payment_charge_id` of the desired transaction.  
 4. Return to the bot and execute:  
    ```
